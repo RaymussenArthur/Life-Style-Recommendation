@@ -2,10 +2,7 @@ import joblib
 import pandas as pd
 from flask import Flask, request, jsonify
 
-# -----------------------------------------------------------------
 # 1. INISIALISASI & LOAD MODEL
-# -----------------------------------------------------------------
-
 # Buat aplikasi Flask
 app = Flask(__name__)
 
@@ -19,10 +16,7 @@ except FileNotFoundError:
     workout_model = None
     meal_model = None
 
-# -----------------------------------------------------------------
 # 2. BUAT API ENDPOINT
-# -----------------------------------------------------------------
-
 # Endpoint root/utama
 @app.route("/")
 def read_root():
@@ -48,7 +42,6 @@ def predict_lifestyle():
         return jsonify({"error": "No input data provided."}), 400
 
     # Ganti nama key agar sesuai dengan kolom di DataFrame (Weight (kg) -> Weight_kg)
-    # Ini karena Python/JSON tidak suka spasi atau kurung di nama variabel
     try:
         input_data["Weight (kg)"] = input_data.pop("Weight_kg")
         input_data["Height (m)"] = input_data.pop("Height_m")
