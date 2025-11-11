@@ -1,4 +1,4 @@
-# Life-Style Recommendation API
+_# Life-Style Recommendation API
 
 This repository contains the machine learning backend for a lifestyle recommendation system.
 
@@ -22,11 +22,32 @@ This system works in two parts:
     * When a user requests a recommendation, the app sends an HTTP request (e.g., using Retrofit or Volley) to the running Flask API.
     * The app receives the API's response (e.g., in JSON format) and displays the recommendation to the user.
 
+## Model Details
+
+This project uses two separate regression models, both built with `sklearn.ensemble.RandomForestRegressor` and packaged into Scikit-learn Pipelines.
+
+### Model 1: Workout Goal Predictor
+
+* **Purpose:** Predicts the optimal **Session Duration** (hours) and **Calories Burned** based on user biometrics.
+* **Algorithm:** `RandomForestRegressor` (n_estimators=10)
+* **Features:** `Age`, `Gender`, `Weight (kg)`, `Height (m)`, `Experience_Level`
+* **Performance:** **R-squared: 75.36%**
+* **Saved File:** `models/workout_goal_pipeline.joblib`
+
+### Model 2: Meal Macro Predictor
+
+* **Purpose:** Predicts the nutritional content (**Calories**, **Proteins**, **Carbs**, **Fats**) of a meal.
+* **Algorithm:** `RandomForestRegressor` (n_estimators=10)
+* **Features:** `Age`, `Gender`, `Weight (kg)`, `Height (m)`, `diet_type`, `cooking_method`, `serving_size_g`
+* **Performance:** **R-squared: 91.91%**
+* **Saved File:** `models/meal_macro_pipeline.joblib`
+
 ## Tech Stack
 
-* **Machine Learning:** Python, Pandas, Scikit-learn, XGBoost (Update as needed)
+* **Machine Learning:** Python, Pandas, Scikit-learn (`RandomForestRegressor`, `Pipeline`)
 * **API:** Flask
 * **Data Analysis:** Jupyter Notebook
+* **Model Saving:** Joblib
 
 ## How to Run the API
 
@@ -52,8 +73,8 @@ This system works in two parts:
     flask run
     # Or: python flask_app.py
     ```
-    The API will now be running (usually at `http://127.0.0.1:5000`). The Android app can now send requests to this address.
+    The API will now be running. The Android app can now use the API and send requests to this address.
 
 ## Android App
 
-**Link to Android App Repo:** ` `
+**Link to Android App Repo:** `brb`_
