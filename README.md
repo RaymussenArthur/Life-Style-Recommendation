@@ -1,4 +1,4 @@
-_# Life-Style Recommendation API
+# Life-Style Recommendation API
 
 This repository contains the machine learning backend for a lifestyle recommendation system.
 
